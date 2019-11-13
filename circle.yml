@@ -3,11 +3,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:10
+      - image: cypress/base:10
     steps:
       - checkout
       - run: npm install
       - run: npm run lint
       - run: npm run build
+      - run: rpm run test:ci
       - store_artifacts:
           path: dist
